@@ -16,6 +16,7 @@ body {
   margin: 0 auto;
 }
 
+
 .menubar {
   width: 100%;
   height: 80px;
@@ -31,6 +32,7 @@ body {
 .menubar ul{
   list-style: none;
   float: right;
+  margin: 20px 0px 0px 0px;
 }
 .menubar ul li {
   float: left;
@@ -46,7 +48,7 @@ header
   width: 100%;
   height: 400px;
   background-image: url(/IMG/6.jpg);
-  opacity: 0.7;
+  
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -55,13 +57,15 @@ header .container h1
   margin: 0;
   text-align: center;
   padding-top: 150px;
+  color: white;
+
 }/*header*/
 .product
 {
   margin: 20px;
-  border: 5px solid #161616;
+  border: 5px solid #1b1a1a;
   background-image: url(https://pbs.twimg.com/media/DoG9gr4VAAAgucS.jpg);
-  opacity: 0.8;
+  
   
 }
 
@@ -89,6 +93,7 @@ header .container h1
   padding: 3rem;
 }
 
+/*ขยับ*/
 @media only screen and (max-width : 1050px)
 {
   .product .table

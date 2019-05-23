@@ -1,0 +1,25 @@
+.body {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgb(238, 151, 255);
+	display: flex;
+	
+	align-items: center;
+	color: white;
+    font-size: 5px;
+}
+.value{
+	height: 200px;
+	width: 200px;
+	background: #F79F24;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    border-radius: 20px;
+}
+.blink {
+	text-align: center;
+    color: grey;
+    height: 100px;
+	width: 100px;
+}
