@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Chewy);
+@import url(https://fonts.googleapis.com/css?family=Chewy);/*menu*/
 body {
     margin: 0;
     padding: 0;
@@ -40,30 +40,29 @@ body {
     text-decoration: none;
     color: yellow;
     font-size: 30px;
-  } /*menu*/
+  } 
+ /*Grid Layout*/
 
-  /*Grid Layout*/
-
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item3 { grid-area: right; }
-.item5 { grid-area: footer; }
-
-.grid-container {
+ .grid-container {
   display: grid;
-  grid-template-areas:
-    'header header header menu menu menu'
-    'right right right main main main '
-    'right right right footer footer footer';
-  grid-gap: 1px;
+  grid-template-columns: auto  ;
   background-color: #2196F3;
-  padding: 5px;
+
+}
+.grid-item .img{ /*รูป*/
+  width: 50%;
+  height: 100%;
+  padding:0px 350px 0px;
+  
 }
 
-.grid-container > div {
+
+
+.grid-item { /*ข้างใน*/
   background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
+
+  padding:0px 50px 0px;
   font-size: 30px;
+  text-align: center;
+
 }

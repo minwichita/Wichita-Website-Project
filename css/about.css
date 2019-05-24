@@ -1,7 +1,8 @@
-/*menu*/
+/*menu*/ 
+@import url(https://fonts.googleapis.com/css?family=Chewy);
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   font-family: 'Chewy', cursive;
 }
 
@@ -29,7 +30,7 @@ body {
 .menubar ul{
   list-style: none;
   float: right;
-  margin: 0px 0px 0px 0px;
+  margin: 20px 0px 0px 0px;
 }
 .menubar ul li {
   float: left;
@@ -40,30 +41,85 @@ body {
   color: yellow;
   font-size: 30px;
 } 
-
-/*Grid Layout
-
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item3 { grid-area: right; }
-.item5 { grid-area: footer; }
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'header header header menu menu menu'
-    'right right right main main main '
-    'right right right footer footer footer';
-  grid-gap: 10px;
-  background-color: #2196F3;
-  padding: 10px;
+ /*กรอบบน*/
+ header
+{
+  width: 100%;
+  height: 400px;
+  background-image: url(/IMG/18.jpg);
+  
+  background-position: center;
+ 
 }
-
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+header .container h1
+{
+  margin: 0;
   text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
+  padding-top: 150px;
+  color: white;
+  font-size: 100px; 
+}/*header*/
+
+.product /*กรอบที่2*/
+{
+  width: 99%;
+  height: 100%;
+  margin: 1px;
+  border: 5px solid #1b1a1a;
+  background-image: url(/IMG/7.jpg);
+  font-size: 20px;
+  color: black;
 }
-*/
+
+.product .title h1
+{
+  text-align: center;
+}
+ 
+.like .car h1
+{
+  text-align: center;
+}
+
+
+/*รูปข้างใน*/
+.product_moto
+{
+  border: 2px solid #161616;
+  padding: 5px;
+  background: rgb(248, 195, 96);
+  text-align: center;
+  width: 700px;
+  height: 600px;
+}
+
+.product_moto .img img{
+  width: 600px;
+  height: 400px;
+  padding-top: 50px;
+}
+.product_moto .img1 img {
+  width:400px;
+  height:500px;
+  padding-top:20px;
+}
+
+
+  /*grid*/
+.product .table
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  padding: 3rem;
+}
+/*ขยับ*/
+
+@media only screen and (max-width : 850px)
+{
+  .product .table
+  {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
