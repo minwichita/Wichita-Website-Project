@@ -7,6 +7,7 @@
     <title>Document</title>
    
     <link rel="stylesheet" href="/css/about.css">
+
 </head>
 <body>
     <div class="menubar">
@@ -80,6 +81,9 @@
                         <div class="name">
                             <div class="name_p">
                             <h1>I like driving cars. </h1>
+                            <form action="/html/about1.html" method="get">
+                                <button type="submit" formaction="/action_page2.php"><a href="about1.html">Please click me</a></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -128,11 +132,15 @@
                         <div class="name">
                             <div class="name_p">
                             <h1>My favorite sport is Table-tennis. </h1>
+                        <form action="/html/about1.html" method="get">
+                            <button type="submit" formaction="/action_page2.php"><a href="about1.html">Please click me</a></button>
+                        </form>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div>
         <div class="button"> <!--ปุ่มกดแสดงเวลา-->
                 <h1>What time is it.</h1>
 
@@ -140,7 +148,9 @@
 onclick="document.getElementById('demo').innerHTML = Date()">
 Click me to display Date and Time.</button>
 
-<p id="demo"></p>
+<footer><!--ล่างสุด-->
+    @Project by Wichita
+</footer>  
 
 </body>
 </html>

@@ -1,113 +1,79 @@
-console.clear();
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var radius = canvas.height / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90
+setInterval(drawClock, 1000);
 
+function drawClock() {
+  drawFace(ctx, radius);
+  drawNumbers(ctx, radius);
+  drawTime(ctx, radius);
+}
 
-function CountdownTracker(label, value){
+function drawFace(ctx, radius) {
+  var grad;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+  grad.addColorStop(0, '#A4C8F0');
+  grad.addColorStop(0.5, 'white');
+  grad.addColorStop(1, '#E1FD8E');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.1;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+  ctx.fillStyle = 'rgb(255, 238, 140)';
+  ctx.fill();
+}
 
-  var el = document.createElement('span');
-
-  el.className = 'flip-clock__piece';
-  el.innerHTML = '<b class="flip-clock__card card"><b class="card__top"></b><b class="card__bottom"></b><b class="card__back"><b class="card__bottom"></b></b></b>' + 
-    '<span class="flip-clock__slot">' + label + '</span>';
-
-  this.el = el;
-
-  var top = el.querySelector('.card__top'),
-      bottom = el.querySelector('.card__bottom'),
-      back = el.querySelector('.card__back'),
-      backBottom = el.querySelector('.card__back .card__bottom');
-
-  this.update = function(val){
-    val = ( '0' + val ).slice(-2);
-    if ( val !== this.currentValue ) {
-      
-      if ( this.currentValue >= 0 ) {
-        back.setAttribute('data-value', this.currentValue);
-        bottom.setAttribute('data-value', this.currentValue);
-      }
-      this.currentValue = val;
-      top.innerText = this.currentValue;
-      backBottom.setAttribute('data-value', this.currentValue);
-
-      this.el.classList.remove('flip');
-      void this.el.offsetWidth;
-      this.el.classList.add('flip');
-    }
+function drawNumbers(ctx, radius) {
+  var ang;
+  var num;
+  ctx.font = radius*0.15 + "px arial";
+  ctx.textBaseline="middle";
+  ctx.textAlign="center";
+  for(num = 1; num < 13; num++){
+    ang = num * Math.PI / 6;
+    ctx.rotate(ang);
+    ctx.translate(0, -radius*0.85);
+    ctx.rotate(-ang);
+    ctx.fillText(num.toString(), 0, 0);
+    ctx.rotate(ang);
+    ctx.translate(0, radius*0.85);
+    ctx.rotate(-ang);
   }
-  
-  this.update(value);
 }
 
-// Calculation adapted from https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
-
-function getTimeRemaining(endtime) {
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  return {
-    'Total': t,
-    'Days': Math.floor(t / (1000 * 60 * 60 * 24)),
-    'Hours': Math.floor((t / (1000 * 60 * 60)) % 24),
-    'Minutes': Math.floor((t / 1000 / 60) % 60),
-    'Seconds': Math.floor((t / 1000) % 60)
-  };
+function drawTime(ctx, radius){
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    // second
+    second=(second*Math.PI/30);
+    drawHand(ctx, second, radius*0.9, radius*0.02);
 }
 
-function getTime() {
-  var t = new Date();
-  return {
-    'Total': t,
-    'Hours': t.getHours() % 12,
-    'Minutes': t.getMinutes(),
-    'Seconds': t.getSeconds()
-  };
+function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
 }
-
-function Clock(countdown,callback) {
-  
-  countdown = countdown ? new Date(Date.parse(countdown)) : false;
-  callback = callback || function(){};
-  
-  var updateFn = countdown ? getTimeRemaining : getTime;
-
-  this.el = document.createElement('div');
-  this.el.className = 'flip-clock';
-
-  var trackers = {},
-      t = updateFn(countdown),
-      key, timeinterval;
-
-  for ( key in t ){
-    if ( key === 'Total' ) { continue; }
-    trackers[key] = new CountdownTracker(key, t[key]);
-    this.el.appendChild(trackers[key].el);
-  }
-
-  var i = 0;
-  function updateClock() {
-    timeinterval = requestAnimationFrame(updateClock);
-    
-    // throttle so it's not constantly updating the time.
-    if ( i++ % 10 ) { return; }
-    
-    var t = updateFn(countdown);
-    if ( t.Total < 0 ) {
-      cancelAnimationFrame(timeinterval);
-      for ( key in trackers ){
-        trackers[key].update( 0 );
-      }
-      callback();
-      return;
-    }
-    
-    for ( key in trackers ){
-      trackers[key].update( t[key] );
-    }
-  }
-
-  setTimeout(updateClock,500);
-}
-
-var deadline = new Date(Date.parse(new Date()) + 12 * 24 * 60 * 60 * 1000);
-var c = new Clock(deadline, function(){ alert('countdown complete') });
-document.body.appendChild(c.el);
-
-var clock = new Clock();
-document.body.appendChild(clock.el);

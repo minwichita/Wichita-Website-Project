@@ -104,6 +104,19 @@ header .container h1
   }
 }
 
+
+#canvas{  
+  padding: 0px 550px;  
+}
+
+footer { /*ล่างสุด*/
+  background:rgb(255, 238, 140);
+  padding: 20px 0px;
+  font-size: 1.5em;
+  text-align: center;
+  color: rgb(171, 68, 255); 
+ 
+}
 @media only screen and (max-width : 850px)
 {
   .product .table
@@ -119,4 +132,9 @@ header .container h1
     display: grid;
     grid-template-columns: 1fr;
   }
+  
 }
+@media only screen and (max-width : 550px)
+{
+
+

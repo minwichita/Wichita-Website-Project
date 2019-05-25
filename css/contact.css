@@ -41,8 +41,15 @@ body {
     color: yellow;
     font-size: 30px;
   } 
- /*Grid Layout*/
 
+.header{
+  background-color: rgba(228, 126, 126, 0.8);
+  font-size: 25px;
+  text-align: center;
+  margin: 0px 0px;
+}
+
+ /*Grid Layout*/
  .grid-container {
   display: grid;
   grid-template-columns: auto  ;
@@ -52,17 +59,32 @@ body {
 .grid-item .img{ /*รูป*/
   width: 50%;
   height: 100%;
-  padding:0px 350px 0px;
+  padding:0px 350px 0px 350px;
   
 }
 
-
-
 .grid-item { /*ข้างใน*/
   background-color: rgba(255, 255, 255, 0.8);
-
-  padding:0px 50px 0px;
-  font-size: 30px;
+  padding:0px ;
+  font-size: 25px;
   text-align: center;
 
+}
+ .credit{ /*ตัวอักษร credit*/
+font-size: 1em;
+background: rgba(255, 174, 174, 0.8);
+padding:0px;
+border: 0px;
+ }
+
+footer { /*ล่างสุด*/
+  background:rgb(255, 238, 140);
+  padding:20px 0px;
+  font-size: 1.5em;
+  text-align: center;
+  color: rgb(171, 68, 255); 
+ 
+}
+.cr {
+  margin: 0px;
 }
